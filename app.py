@@ -37,10 +37,7 @@ with st.form("classifier_form"):
         help="Leave blank if the supplier is unknown.",
         key="supplier",
     )
-    submit = st.form_submit_button(
-        "Classify",
-        disabled=not po_description.strip(),
-    )
+    submit = st.form_submit_button("Classify")
 
 col_left, col_right = st.columns([1, 3])
 with col_left:
@@ -62,7 +59,7 @@ if submit:
             elapsed = time.perf_counter() - start
         except Exception as exc:
             st.error("Classification failed. Please check your API key or try again.")
-            st.caption(f"Error details: {exc}")
+            st.exception(exc)
         else:
             st.subheader("Classification Result")
             st.caption(f"Model: {MODEL} · Latency: {elapsed:.2f}s")
