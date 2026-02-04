@@ -10,6 +10,14 @@ st.caption("Classify purchase order descriptions using the enterprise taxonomy."
 
 show_raw_output = st.sidebar.checkbox("Show raw model output", value=True)
 
+with st.expander("Examples"):
+    st.markdown(
+        "- DocuSign Inc - eSignature Enterprise Pro Subscription\n"
+        "- Flight ticket for business travel\n"
+        "- Office cleaning services - monthly contract\n"
+        "- Laptop accessories: docking station and cables"
+    )
+
 if "po_description" not in st.session_state:
     st.session_state["po_description"] = ""
 if "supplier" not in st.session_state:
