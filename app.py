@@ -23,6 +23,10 @@ if "po_description" not in st.session_state:
 if "supplier" not in st.session_state:
     st.session_state["supplier"] = ""
 
+def clear_form():
+    st.session_state["po_description"] = ""
+    st.session_state["supplier"] = ""
+
 with st.form("classifier_form"):
     po_description = st.text_area(
         "PO Description",
@@ -41,12 +45,7 @@ with st.form("classifier_form"):
 
 col_left, col_right = st.columns([1, 3])
 with col_left:
-    clear = st.button("Clear", type="secondary")
-
-if clear:
-    st.session_state["po_description"] = ""
-    st.session_state["supplier"] = ""
-    st.rerun()
+    st.button("Clear", type="secondary", on_click=clear_form)
 
 if submit:
     if not po_description.strip():
@@ -75,4 +74,3 @@ if submit:
                 if show_raw_output:
                     with st.expander("Raw response"):
                         st.text(result)
-
